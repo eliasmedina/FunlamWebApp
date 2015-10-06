@@ -3,11 +3,13 @@ package taxiwebserviquibdo.elienco.com.funlamweb;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class Login extends Activity {
     EditText usuario= null;
@@ -23,6 +25,17 @@ public class Login extends Activity {
         login.setOnClickListener(btnlogin_Click);
 
     }
+    //boton atras
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+            Intent nuevaAtivity = new Intent(Login.this, MainActivity.class);
+            startActivity(nuevaAtivity);
+            finish();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -34,13 +47,25 @@ public class Login extends Activity {
     View.OnClickListener btnlogin_Click = new View.OnClickListener() {
         @Override
         public void onClick(View arg0) {
-             usuario= (EditText) findViewById(R.id.txtusuario);
-            login= (EditText) findViewById(R.id.txtlogin);
-          if (usuario.toString()=="prueba"&&login.toString()=="prueba"){
-              Intent intlogin = new Intent(Login.this, MainActivity.class);
-              startActivityForResult(intlogin, 0);
-              finish();
-          }
+            usuario = (EditText) findViewById(R.id.usuario);
+            login = (EditText) findViewById(R.id.con);
+            String a=usuario.getText().toString();
+            String b=login.getText().toString();
+            if (a.equals("")||b.equals("")) {
+                Toast.makeText(Login.this, "Campos incompletos", Toast.LENGTH_SHORT).show();
+            }else {
+                if(((usuario.getText().toString().matches("[a-zA-Z0-9._-]+@[a-z]+.[a-z]")&&usuario.length()> 0)||(usuario.getText().toString().matches("[a-zA-Z0-9._-]+@[a-z]+.[a-z]+.[a-z]")&&usuario.length()> 0)||(usuario.getText().toString().matches("[a-zA-Z0-9._-]+@[a-z]+.[a-z]+.co")&&usuario.length()> 0)||(usuario.getText().toString().matches("[a-zA-Z0-9._-]+@[a-z]+.co")&&usuario.length()> 0)||(usuario.getText().toString().matches("[a-zA-Z0-9._-]+@[a-z]+.es")&&usuario.length()> 0) ))
+                    {
+                        if (usuario.toString() == "prueba@prueba.com" && login.toString() == "prueba") {
+                            Intent intlogin = new Intent(Login.this, MainActivity.class);
+                            startActivityForResult(intlogin, 0);
+                            finish();
+
+                }
+                }else {
+                    Toast.makeText(Login.this, "valide su Correo", Toast.LENGTH_SHORT).show();
+                }
+            }
         }
     };
     @Override
