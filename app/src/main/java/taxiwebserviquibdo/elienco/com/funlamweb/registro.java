@@ -87,11 +87,11 @@ public class registro extends Activity {
                         osw.write(conv);
                         osw.flush();
                         osw.close();
-                        Toast.makeText(registro.this, "Direccion agregada Correctamente", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(registro.this, "agregada Correctamente", Toast.LENGTH_SHORT).show();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                   }else{
+                }else{
                         Toast.makeText(registro.this, "Usuario existe", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -155,5 +155,3 @@ public class registro extends Activity {
         return super.onOptionsItemSelected(item);
     }
 }
-
-               
