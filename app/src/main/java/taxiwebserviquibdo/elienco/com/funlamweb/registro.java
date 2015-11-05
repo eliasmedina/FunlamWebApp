@@ -91,7 +91,7 @@ public class registro extends Activity {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                }else{
+                   }else{
                         Toast.makeText(registro.this, "Usuario existe", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -155,3 +155,5 @@ public class registro extends Activity {
         return super.onOptionsItemSelected(item);
     }
 }
+
+               
