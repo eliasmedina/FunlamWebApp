@@ -29,8 +29,8 @@ public class preview extends Activity {
             public void run() {runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    String archivoinformacion=consultarArchivo("FunlamWeb");
-                    String informacion[] =  archivoinformacion.split("/");
+                    String archivoinformacion=consultarArchivo("login");
+                    String informacion[] =  archivoinformacion.split(",");
                     try{
                         if(informacion[0].equals("OK")){
                             Intent mainIntent = new Intent().setClass(preview.this, MainActivity.class);

@@ -1,10 +1,13 @@
 package taxiwebserviquibdo.elienco.com.funlamweb;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.ActionBarActivity;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -44,57 +47,36 @@ public class registro extends Activity {
         if(((correo.getText().toString().matches("[a-zA-Z0-9._-]+@[a-z]+.[a-z]")&&correo.length()> 0)||(correo.getText().toString().matches("[a-zA-Z0-9._-]+@[a-z]+.[a-z]+.[a-z]")&&correo.length()> 0)||(correo.getText().toString().matches("[a-zA-Z0-9._-]+@[a-z]+.[a-z]+.co")&&correo.length()> 0)||(correo.getText().toString().matches("[a-zA-Z0-9._-]+@[a-z]+.co")&&correo.length()> 0)||(correo.getText().toString().matches("[a-zA-Z0-9._-]+@[a-z]+.es")&&correo.length()> 0) ))
         {
         if(Contrasena.equals("")&&Celular.equals("")&&Cedula.equals("")&&Direccion.equals("")&&Correo.equals("")) {
-            Toast.makeText(registro.this, "Verifique los Datos", Toast.LENGTH_SHORT).show();
+            Toast.makeText(registro.this, "Verifique los Campos", Toast.LENGTH_SHORT).show();
         }else{
             try {
-                String archivoinformacion = consultarArchivo("FunlamWeb");
-                String informacion[] = archivoinformacion.split("/");
-                int ultreg=informacion.length;
-                if (ultreg == 1){
-                    try {
-                        File tarjeta = Environment.getExternalStorageDirectory();
-                        File filedir = new File(tarjeta.getAbsolutePath(), nomarchivo);
-                        OutputStreamWriter oswdf = new OutputStreamWriter(new FileOutputStream(filedir));
-                        oswdf.write("OK/"+"1,"+Correo+","+Contrasena+","+Usuario+","+Celular+","+Cedula+","+Direccion+"/");
-                        oswdf.flush();
-                        oswdf.close();
-                        Toast.makeText(registro.this, "usuario agregado Correctamente", Toast.LENGTH_SHORT).show();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                } else {
-                    int contador =0;
-                    int reg=informacion.length;
-                    for (int i = 1; i < reg; i++) {
-                        String infor[] = informacion[i].split(",");
-                        int ger= infor.length;
-                    for(int j= 0; j<ger;j++){
-                        if(infor[1].equals(Correo)){
-                           contador=1;
-                        }
-                    }}
-                    if(contador==0){
-                    int a = 0;
-                    String conv = "";
-                    for (a = 0; a < ultreg; a++) {
-                        conv += informacion[a] + "/";
-                    }
-                    try {
-                        conv += (a) + "," + Correo + "," + Contrasena + "," + Usuario + "," + Celular + "," + Cedula + "," + Direccion + "/";
-                        File tarjeta = Environment.getExternalStorageDirectory();
-                        File file = new File(tarjeta.getAbsolutePath(), nomarchivo);
-                        OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream(file));
-                        osw.write(conv);
-                        osw.flush();
-                        osw.close();
-                        Toast.makeText(registro.this, "agregada Correctamente", Toast.LENGTH_SHORT).show();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }else{
-                        Toast.makeText(registro.this, "Usuario existe", Toast.LENGTH_SHORT).show();
-                    }
-                }
+                AdminSQLiteOpenHelper dbHelper = new AdminSQLiteOpenHelper (getBaseContext());
+                SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+            }catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+            try {
+            AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(registro.this,"Horariofunlam", null, 2);
+                SQLiteDatabase bd = admin.getWritableDatabase();
+                int cedulas =Integer.parseInt(Cedula);
+                String nombres =Usuario;
+                String direccions =Direccion;
+                String correos =Correo;
+                String contrasenas =Contrasena;
+                String telefonos =Celular;
+                ContentValues registro = new ContentValues();
+                registro.put("cedula",cedulas );
+                registro.put("nombre", nombres);
+                registro.put("Direccion", direccions);
+                registro.put("correo", correos);
+                registro.put("contrasena", contrasenas);
+                registro.put("telefono", telefonos);
+                bd.insert("Horariofunlam", null, registro);
+                bd.close();
+                Toast.makeText(registro.this, "Se guardo en historial",
+                        Toast.LENGTH_SHORT).show();
             }catch (Exception e)
             {
                 e.printStackTrace();
@@ -118,27 +100,16 @@ public class registro extends Activity {
         getMenuInflater().inflate(R.menu.menu_registro, menu);
         return true;
     }
-    //Consulta la infomacion almacenada en los archivos
-    protected String consultarArchivo(String InfoArchivo)
-    {
-        File tarjeta = Environment.getExternalStorageDirectory();
-        File file = new File(tarjeta.getAbsolutePath(), InfoArchivo);
-        try {
-            FileInputStream fin = new FileInputStream(file);
-            InputStreamReader archivo = new InputStreamReader(fin);
-            BufferedReader br = new BufferedReader(archivo);
-            String linea = br.readLine();
-            String todo = "";
-            while (linea != null) {
-                todo = todo + linea + "";
-                linea = br.readLine();
-            }
-            br.close();
-            archivo.close();
-            return todo;
-        } catch (IOException e) {
-            return "Error";
+    //boton atras
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+            Intent nuevaAtivity = new Intent(registro.this, MainActivity.class);
+            startActivity(nuevaAtivity);
+            finish();
+            return true;
         }
+        return super.onKeyDown(keyCode, event);
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

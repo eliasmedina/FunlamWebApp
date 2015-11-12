@@ -29,8 +29,6 @@ public class perfil extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil);
         //guarda archivo en microsd
-
-
         String archivoinformacion = consultarArchivo("login");
         String informacion[] = archivoinformacion.split(",");
         String infor[] = informacion[1].split("/");
@@ -39,11 +37,11 @@ public class perfil extends Activity {
         TextView Celular = (TextView) findViewById(R.id.txtcelular);
         TextView Cedula = (TextView) findViewById(R.id.txtcedula);
         TextView Direccion = (TextView) findViewById(R.id.txtdireccion);
-       Correo.setText(infor[1]);
-        Usuario.setText(infor[3]);
-        Celular.setText(infor[4]);
-        Cedula.setText(infor[5]);
-        Direccion.setText(infor[6]);
+        Correo.setText(infor[3]);
+        Usuario.setText(infor[1]);
+        Celular.setText(infor[5]);
+        Cedula.setText(infor[0]);
+        Direccion.setText(infor[2]);
     }
     //Consulta la infomacion almacenada en los archivos
     protected String consultarArchivo(String InfoArchivo) {

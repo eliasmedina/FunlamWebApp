@@ -3,17 +3,26 @@ package taxiwebserviquibdo.elienco.com.funlamweb;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -22,20 +31,79 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.ArrayList;
 
 public class Login extends Activity {
-    EditText usuario= null;
-    EditText login= null;
-
-
+    String[] Arrayhistorial;
+    ListView listah;
+    lihistorial[] datosh = null;
+ int r=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        Button login= (Button) findViewById(R.id.btnlogin);
-        login.setOnClickListener(btnlogin_Click);
 
     }
+    public void btnregistro(View view){
+        Intent inten= new Intent(Login.this,registro.class);
+        startActivity(inten);
+        finish();
+    }
+    public void btninicio(View view){
+        String[] Arrayhistorial = new String[0];
+        Activity context;
+        try {
+            EditText correoe = (EditText) findViewById(R.id.edtusuario);
+            String correo = correoe.getText().toString();
+            EditText contrasenae = (EditText) findViewById(R.id.contrasena);
+            String contrasena = contrasenae.getText().toString();
+
+            AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "Horariofunlam", null, 2);
+            SQLiteDatabase bd = admin.getWritableDatabase();
+            Cursor fila = bd.rawQuery("select * from Horariofunlam where correo = '" + correo + "'", null);
+            ArrayList<taxiwebserviquibdo.elienco.com.funlamweb.liusuario> historiaconsulta = new ArrayList<taxiwebserviquibdo.elienco.com.funlamweb.liusuario>();
+            Arrayhistorial = new String[fila.getCount()];
+            int registros = fila.getCount();
+
+            if (fila.moveToFirst()) {
+                for (int i = 0; i < registros; i++) {
+                    String var1 = fila.getString(0);
+                    String var2 = fila.getString(1);
+                    String var3 = fila.getString(2);
+                    String var4 = fila.getString(3);
+                    String var5 = fila.getString(4);
+                    String var6 = fila.getString(5);
+                    Arrayhistorial[0] =var1+","+var2+","+var3+","+var4+","+var5+","+var6+",";
+                }
+            }
+
+            String usuario[] = Arrayhistorial[0].split(",");
+            if (usuario[4].equals(contrasena)) {
+                r = 1;
+            }
+
+            if (r==1) {
+                String nomarchivo = "login";
+                File tarjeta = Environment.getExternalStorageDirectory();
+                File file = new File(tarjeta.getAbsolutePath(), nomarchivo);
+                OutputStreamWriter osw = new OutputStreamWriter(
+                        new FileOutputStream(file));
+                osw.write("OK"+","+usuario[0]+"/"+usuario[1]+"/"+usuario[2]+"/"+usuario[3]+"/"+usuario[4]+"/"+usuario[5]);
+                osw.flush();
+                osw.close();
+                Toast.makeText(Login.this, "Los datos fueron grabados correctamente",Toast.LENGTH_SHORT).show();
+                Intent inten= new Intent(Login.this,MainActivity.class);
+                startActivity(inten);
+                finish();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
     //boton atras
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -46,109 +114,5 @@ public class Login extends Activity {
             return true;
         }
         return super.onKeyDown(keyCode, event);
-    }
-    public void btnregistro(View view){
-        Intent inten= new Intent(Login.this,registro.class);
-        startActivity(inten);
-        finish();
-    }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_login, menu);
-        return true;
-    }
-
-    View.OnClickListener btnlogin_Click = new View.OnClickListener() {
-        @Override
-        public void onClick(View arg0) {
-             usuario = (EditText) findViewById(R.id.edtusuario);
-            login = (EditText) findViewById(R.id.contrasena);
-            String a=usuario.getText().toString();
-            String b=login.getText().toString();
-            if (a.equals("")||b.equals("")) {
-                Toast.makeText(Login.this, "Campos incompletos", Toast.LENGTH_SHORT).show();
-            }else {
-                if(((usuario.getText().toString().matches("[a-zA-Z0-9._-]+@[a-z]+.[a-z]")&&usuario.length()> 0)||(usuario.getText().toString().matches("[a-zA-Z0-9._-]+@[a-z]+.[a-z]+.[a-z]")&&usuario.length()> 0)||(usuario.getText().toString().matches("[a-zA-Z0-9._-]+@[a-z]+.[a-z]+.co")&&usuario.length()> 0)||(usuario.getText().toString().matches("[a-zA-Z0-9._-]+@[a-z]+.co")&&usuario.length()> 0)||(usuario.getText().toString().matches("[a-zA-Z0-9._-]+@[a-z]+.es")&&usuario.length()> 0) ))
-                    {
-                        String archivoinformacion = consultarArchivo("FunlamWeb");
-                        String informacion[] = archivoinformacion.split("/");
-                        int reg=informacion.length;
-                        for (int i = 1; i < reg; i++) {
-                            String infor[] = informacion[i].split(",");
-                            int ger= infor.length;
-                            for(int j= 0; j<ger;j++){
-                                if(infor[1].equals(a)){
-                                    if(infor[2].equals((b))){
-                                        //guarda archivo en microsd
-                                        try {
-                                            String nomarchivo = "login";
-                                            File tarjeta = Environment.getExternalStorageDirectory();
-                                            File file = new File(tarjeta.getAbsolutePath(), nomarchivo);
-                                            OutputStreamWriter osw = new OutputStreamWriter(
-                                                    new FileOutputStream(file));
-                                            osw.write("OK,"+infor[0]+"/"+infor[1]+"/"+infor[2]+"/"+infor[3]+"/"+infor[4]+"/"+infor[5]+"/"+infor[6]);
-                                            osw.flush();
-                                            osw.close();
-                                            j=ger+1;
-                                            i=reg+1;
-                                            Toast.makeText(Login.this, "Usuario Correcto", Toast.LENGTH_SHORT).show();
-                                            Intent inten = new Intent(Login.this, MainActivity.class);
-                                            startActivity(inten);
-                                            finish();
-                                        }catch (Exception lol){
-                                            lol.printStackTrace();
-                                        }
-                                    }
-                                }else{
-                                    Toast.makeText(Login.this, "Usuario no existe o contraseña incorrecto", Toast.LENGTH_SHORT).show();
-                                }
-
-                            }
-
-                        }
-
-                }else {
-                    Toast.makeText(Login.this, "valide su Correo", Toast.LENGTH_SHORT).show();
-                }
-            }
-        }
-    };
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    //Consulta la infomacion almacenada en los archivos
-    protected String consultarArchivo(String InfoArchivo)
-    {
-        File tarjeta = Environment.getExternalStorageDirectory();
-        File file = new File(tarjeta.getAbsolutePath(), InfoArchivo);
-        try {
-            FileInputStream fin = new FileInputStream(file);
-            InputStreamReader archivo = new InputStreamReader(fin);
-            BufferedReader br = new BufferedReader(archivo);
-            String linea = br.readLine();
-            String todo = "";
-            while (linea != null) {
-                todo = todo + linea + "";
-                linea = br.readLine();
-            }
-            br.close();
-            archivo.close();
-            return todo;
-        } catch (IOException e) {
-            return "Error";
-        }
     }
 }
