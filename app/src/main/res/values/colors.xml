@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <resources>
+        <color name="botonPrimario">#ffff</color>
+        <color name="botonPrimarioSombra">#FFE082</color>
+        <color name="botonDeshabilitado">#FFC107</color>
+        <color name="botonDeshabilitadoSombra">#FFE082</color>
+        <color name="botonSombra">#FFE082</color>
+        <color name="fondo">#000000</color>
+        <color name="botonpedir">#FFC107</color>
+        <color name="botonpedirDeshabilitado">#FFE082</color>
+
+
+        <color name="black_semi_transparent">#7c6464</color>
+        <color name="background">#e5e5e5</color>
+        <color name="half_black">#808080</color>
+        <color name="white">#fafafa</color>
+        <color name="white_pressed">#f1f1f1</color>
+        <color name="pink">#000000</color>
+        <color name="pink_pressed">#000000</color>
+        <color name="blue_semi_transparent">#805677fc</color>
+        <color name="blue_semi_transparent_pressed">#80738ffe</color>
+
+        <color name="blue">#2979FF</color>
+        <color name="blue_pressed">#82B1FF</color>
+        <color name="orange">#FFA726</color>
+        <color name="orenage_pressed">#FFC107</color>
+        <color name="green">#6ACA25</color>
+        <color name="green_pressed">#76FF03</color>
+        <color name="botondireccion_favorita">#FB8C00</color>
+        <color name="botondireccion_favorita_des">#FFD54F</color>
+        <color name="botondireccion_favoritasombra">#FFA726</color>
+        <color name="botonregistrar_oscuro">#9E9E9E</color>
+        <color name="botonregistrar_sombra">#BDBDBD</color>
+        <color name="botonregistrar_des">#E0E0E0</color>
+    <color name="background_gradient_start">#000000</color>
+    <color name="background_gradient_end">#DDDDDD</color>
+    <color name="fastlane_background">#0096a6</color>
+    <color name="search_opaque">#ffaa3f</color>
+    <color name="detail_background">#0096a6</color>
+    <color name="soft_opaque">#30000000</color>
+    <color name="img_soft_opaque">#30FF0000</color>
+    <color name="img_full_opaque">#00000000</color>
+    <color name="black_opaque">#AA000000</color>
+    <color name="black">#59000000</color>
+    <color name="orange_transparent">#AAFADCA7</color>
+    <color name="yellow">#EEFF41</color>
+    <color name="default_background">#3d3d3d</color>
+    </resources>
+
+
+

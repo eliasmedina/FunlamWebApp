@@ -4,9 +4,151 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="taxiwebserviquibdo.elienco.com.funlamweb.perfil">
+    android:background="@drawable/perfil"
+    tools:context="taxiwebserviquibdo.elienco.com.funlamweb.perfil"
+    android:focusableInTouchMode="true">
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Perfil"
+        android:textColor="#fff"
+        android:textStyle="bold"
+        android:id="@+id/textView2"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
+    <TextView
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Nombre"
+        android:layout_below="@+id/textView2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="40dp"
+        android:id="@+id/textView3"
+        android:textColor="#fff"
+        android:textSize="20dp" />
+
+    <TextView
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Correo"
+        android:id="@+id/textView9"
+        android:layout_marginTop="37dp"
+        android:textColor="#fff"
+        android:layout_below="@+id/txtnombre"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textSize="20dp" />
+      <TextView
+          android:textStyle="bold"
+          android:textColor="#fff"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textAppearance="?android:attr/textAppearanceMedium"
+    android:text="Cedula"
+    android:id="@+id/textView10"
+    android:layout_below="@+id/textView9"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentStart="true"
+    android:layout_marginTop="43dp"
+          android:textSize="20dp" />
+
+
+    <TextView
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Celular"
+        android:textColor="#fff"
+        android:id="@+id/textView11"
+        android:layout_below="@+id/textView10"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="53dp"
+        android:textSize="20dp" />
+    <TextView
+        android:textStyle="bold"
+        android:textColor="#fff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Direccion"
+        android:id="@+id/textView12"
+        android:layout_below="@+id/textView11"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="40dp"
+        android:singleLine="true"
+        android:textSize="20dp" />
+    <TextView
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Small Text"
+        android:id="@+id/txtnombre"
+        android:layout_alignTop="@+id/textView3"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_alignStart="@+id/textView2"
+        android:textColor="#fff"
+        android:textSize="15dp" />
+    <TextView
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Small Text"
+        android:id="@+id/txtcorreo"
+        android:layout_above="@+id/textView10"
+        android:layout_alignLeft="@+id/txtnombre"
+        android:layout_alignStart="@+id/txtnombre"
+        android:textColor="#fff"
+        android:textSize="15dp" />
+    <TextView
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Small Text"
+        android:id="@+id/txtcedula"
+        android:layout_alignTop="@+id/textView10"
+        android:layout_alignLeft="@+id/txtcorreo"
+        android:layout_alignStart="@+id/txtcorreo"
+        android:textColor="#fff"
+        android:textSize="15dp" />
+    <TextView
+        android:textStyle="bold"
+        android:textColor="#fff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Small Text"
+        android:id="@+id/txtcelular"
+        android:layout_above="@+id/textView12"
+        android:layout_alignLeft="@+id/txtcedula"
+        android:layout_alignStart="@+id/txtcedula"
+        android:textSize="15dp" />
+
+    <TextView
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Small Text"
+        android:id="@+id/txtdireccion"
+        android:layout_alignBottom="@+id/textView12"
+        android:layout_alignLeft="@+id/txtcelular"
+        android:layout_alignStart="@+id/txtcelular"
+
+        android:textIsSelectable="false"
+        android:textColor="#fff"
+        android:textSize="15dp" />
 </RelativeLayout>

@@ -1,0 +1,126 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity"
+    android:background="#BDBDBD"
+    >
+
+    <WebView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/webView"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <com.getbase.floatingactionbutton.FloatingActionsMenu
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        fab:fab_labelStyle="@style/menu_labels_style"
+        fab:fab_addButtonColorNormal="@color/pink"
+        fab:fab_addButtonColorPressed="@color/pink_pressed"
+        fab:fab_labelsPosition="left"
+        fab:fab_addButtonPlusIconColor="@color/white"
+        fab:fab_expandDirection="up"
+        android:id="@+id/view"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true">
+        <!--android:onClick="login"-->
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_colorNormal="@color/orange"
+            fab:fab_icon="@drawable/sesion"
+            fab:fab_title="Inicio Sesión"
+            fab:fab_colorPressed="@color/orenage_pressed"
+            android:id="@+id/btnlogin"
+            android:onClick="btnlogin"
+
+            />
+        <!--android:onClick="registro-->
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_colorNormal="@color/img_soft_opaque"
+            fab:fab_icon="@drawable/reg"
+            fab:fab_title="Registrarse"
+            fab:fab_colorPressed="@color/soft_opaque"
+            android:id="@+id/btnregistro"
+            android:onClick="btnregistro"
+
+            />
+
+        <!--android:onClick="salir-->
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_colorNormal="@color/dim_foreground_disabled_material_dark"
+            fab:fab_icon="@drawable/salir"
+            fab:fab_title="Salir"
+            fab:fab_colorPressed="@color/fastlane_background"
+            android:id="@+id/btnsalir"
+            android:onClick="btnsalir"
+
+            />
+
+
+        <!--android:onClick="perfil"-->
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_colorNormal="@color/blue"
+            fab:fab_icon="@drawable/casa"
+            fab:fab_title="Perfil"
+            fab:fab_colorPressed="@color/blue_pressed"
+            android:id="@+id/btnperfil"
+            android:onClick="btnperfil"
+
+            />
+        <!--android:onClick="hi-->
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_colorNormal="@color/detail_background"
+            fab:fab_icon="@drawable/calendaricon"
+            fab:fab_title="Historia"
+            fab:fab_colorPressed="@color/fastlane_background"
+            android:id="@+id/btnhistoria"
+            android:onClick="btnhistorial"
+
+            />
+        <!--android:onClick="registrohistorial-->
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_colorNormal="@color/img_soft_opaque"
+            fab:fab_icon="@drawable/menu"
+            fab:fab_title="Registrar Horario"
+            fab:fab_colorPressed="@color/soft_opaque"
+            android:id="@+id/btnregistrohi"
+            android:onClick="btnregistrohi"
+
+            />
+        <!--android:onClick="llamar-->
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_colorNormal="@color/ripple_material_dark"
+            fab:fab_icon="@drawable/llam"
+            fab:fab_title="llamar"
+            fab:fab_colorPressed="@color/soft_opaque"
+            android:id="@+id/btnllamar"
+            android:onClick="btnllamar"
+
+            />
+    </com.getbase.floatingactionbutton.FloatingActionsMenu>
+</RelativeLayout>

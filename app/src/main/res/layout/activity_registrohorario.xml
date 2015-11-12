@@ -5,6 +5,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="@drawable/fondo"
     tools:context="taxiwebserviquibdo.elienco.com.funlamweb.registrohorario">
 
     <ScrollView
@@ -32,6 +33,20 @@
                 android:layout_marginBottom="20dp"
                 android:ems="10"
                 android:gravity="center_horizontal" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Cedula"
+                android:id="@+id/textView22"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtcedula" />
 
             <TextView
                 android:id="@+id/lblDireccionLi"
@@ -65,6 +80,18 @@
                 android:id="@+id/txtaula" />
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Hora"
+                android:id="@+id/textView13" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/txthora" />
+
+            <TextView
                 android:id="@+id/lblEstadoLi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -95,13 +122,25 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Fecha"
+                android:text="Fecha Inicio"
                 android:id="@+id/textView17" />
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/txtfecha" />
+                android:id="@+id/txtfechainicio" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Fecha Final"
+                android:id="@+id/drgfdrg" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtfechafinal" />
 
             <Button
                 android:id="@+id/btnguardar"
